@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import baseStyles from './../utils/baseStyles';
-
 import Main from './Main';
 
 const Header = styled.header`
@@ -36,8 +34,6 @@ const Wrap = styled.div`
 
 class App extends React.Component {
   render() {
-    // baseStyles();
-
     return (
       <Wrap>
         <Header>
