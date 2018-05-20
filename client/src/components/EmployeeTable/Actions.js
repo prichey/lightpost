@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import Button from '../common/Button';
+
 const ActionsWrap = styled.div`
   margin-bottom: 1em;
 
@@ -48,15 +50,6 @@ const ButtonWrap = styled.li`
   }
 `;
 
-const Button = styled.button`
-  padding: 1rem;
-  background: #6a21fa;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  font-size: 16px;
-`;
-
 class Actions extends React.Component {
   render() {
     const { openAddModal, clearFilters } = this.props;
@@ -65,7 +58,9 @@ class Actions extends React.Component {
         <ActionsText>{'Actions: '}</ActionsText>
         <ButtonList>
           <ButtonWrap>
-            <Button onClick={openAddModal}>Add Employee</Button>
+            <Button onClick={openAddModal} color="green">
+              Add Employee
+            </Button>
           </ButtonWrap>
           <ButtonWrap>
             <Button onClick={clearFilters}>Clear Filters</Button>
