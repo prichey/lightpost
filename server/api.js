@@ -5,7 +5,7 @@ const low = require('lowdb');
 const FileAsync = require('lowdb/adapters/FileAsync');
 const adapter = new FileAsync('db.json');
 
-const uuidv1 = require('uuid/v1'); // time-based
+const shortid = require('shortid');
 
 // get all employees
 router.get('/employees', async (req, res) => {
@@ -30,7 +30,7 @@ router.post('/employees', async (req, res) => {
     }
 
     const { name } = req.body; // only grab the things we need from the request
-    const newEmployee = { name, id: uuidv1() };
+    const newEmployee = { name, id: shortid() };
 
     await db
       .get('employees')
