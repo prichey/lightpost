@@ -59,13 +59,13 @@ const Button = styled.button`
 
 class Actions extends React.Component {
   render() {
-    const { openCreateModal, clearFilters } = this.props;
+    const { openAddModal, clearFilters } = this.props;
     return (
       <ActionsWrap>
         <ActionsText>{'Actions: '}</ActionsText>
         <ButtonList>
           <ButtonWrap>
-            <Button onClick={openCreateModal}>Add Employee</Button>
+            <Button onClick={openAddModal}>Add Employee</Button>
           </ButtonWrap>
           <ButtonWrap>
             <Button onClick={clearFilters}>Clear Filters</Button>
@@ -77,7 +77,7 @@ class Actions extends React.Component {
 }
 
 Actions.propTypes = {
-  openCreateModal: PropTypes.func.isRequired,
+  openAddModal: PropTypes.func.isRequired,
   clearFilters: PropTypes.func.isRequired
 };
 

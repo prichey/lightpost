@@ -5,10 +5,12 @@ import { AutoSizer, Column, Table } from 'react-virtualized';
 import { getEmployees } from '../../utils/employeesService';
 
 import Actions from './Actions';
+import AddEmployeeModal from './AddEmployeeModal';
 
 class EmployeeTable extends React.Component {
   state = {
-    employees: []
+    employees: [],
+    addModalIsOpen: false
   };
 
   componentDidMount() {
@@ -17,8 +19,18 @@ class EmployeeTable extends React.Component {
     });
   }
 
-  openCreateModal = e => {
-    console.log('openCreateModal');
+  openAddModal = e => {
+    console.log('openAddModal');
+
+    this.setState({
+      addModalIsOpen: true
+    });
+  };
+
+  closeAddModal = () => {
+    this.setState({
+      addModalIsOpen: false
+    });
   };
 
   clearFilters = e => {
@@ -26,14 +38,14 @@ class EmployeeTable extends React.Component {
   };
 
   render() {
-    const { employees } = this.state;
+    const { employees, addModalIsOpen } = this.state;
 
     if (!employees) return null;
 
     return (
       <React.Fragment>
         <Actions
-          openCreateModal={this.openCreateModal}
+          openAddModal={this.openAddModal}
           clearFilters={this.clearFilters}
         />
         <AutoSizer>
@@ -52,6 +64,10 @@ class EmployeeTable extends React.Component {
             </Table>
           )}
         </AutoSizer>
+        <AddEmployeeModal
+          isOpen={addModalIsOpen}
+          closeModal={this.closeAddModal}
+        />
       </React.Fragment>
     );
   }
