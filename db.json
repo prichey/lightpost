@@ -2,9 +2,9 @@
   "employees": [
     {
       "name": "Preston Richey",
-      "id": "SJJZXQJk7",
       "department": "Engineering",
-      "position": "Full Stack Developer"
+      "position": "Full Stack Developer",
+      "id": "SJJZXQJk7"
     }
   ]
 }
