@@ -1,0 +1,23 @@
+{
+  "name": "lightpost",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js --ignore client/ --ignore db.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lowdb": "^1.0.0",
+    "path": "^0.12.7",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}
