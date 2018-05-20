@@ -36,7 +36,7 @@ const Wrap = styled.div`
 
 class App extends React.Component {
   render() {
-    baseStyles();
+    // baseStyles();
 
     return (
       <Wrap>
