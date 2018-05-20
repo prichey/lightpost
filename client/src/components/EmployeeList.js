@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import { getEmployees } from '../services/employees';
+import { getEmployees } from '../utils/employeesService';
 
 class EmployeeList extends React.Component {
   state = {
