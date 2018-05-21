@@ -53,7 +53,6 @@ class EmployeeForm extends React.Component {
   handleFormSubmit = e => {
     const { employee } = this.state;
     const { handleAddSuccess, closeModal } = this.props;
-    console.log(employee);
 
     e.preventDefault();
 
