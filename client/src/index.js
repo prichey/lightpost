@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
 import './index.css'; // global styles (mostly reset)
-import 'react-virtualized/styles.css'; // react-virtualized base styles
+import 'react-table/react-table.css'; // react-table base styles
 
 import App from './components/App';
 

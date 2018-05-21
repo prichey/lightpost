@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { AutoSizer, Column, Table } from 'react-virtualized';
+import ReactTable from 'react-table';
 
 import { getEmployees } from '../../utils/employeesService';
 
@@ -62,22 +62,41 @@ class EmployeeTable extends React.Component {
           openAddModal={this.openAddModal}
           clearFilters={this.clearFilters}
         />
-        <AutoSizer>
-          {({ height, width }) => (
-            <Table
-              width={width}
-              height={400}
-              headerHeight={20}
-              rowHeight={30}
-              rowCount={employees.length}
-              rowGetter={({ index }) => employees[index]}
-            >
-              <Column label="Name" dataKey="name" width={150} />
-              <Column label="Department" dataKey="department" width={150} />
-              <Column label="Position" dataKey="position" width={150} />
-            </Table>
-          )}
-        </AutoSizer>
+        <ReactTable
+          // showPagination={false}
+          showPaginationBottom={true}
+          showPageSizeOptions={false}
+          defaultPageSize={15}
+          data={employees}
+          columns={[
+            {
+              Header: 'Name',
+              accessor: 'name'
+            },
+            {
+              Header: 'Department',
+              accessor: 'department'
+            },
+            {
+              Header: 'Position',
+              accessor: 'position'
+            }
+            // {
+            //   Header: 'Actions',
+            //   // minWidth: 30,
+            //   Cell: props => (
+            //     <React.Fragment>
+            //       <span className="number" onClick={e => console.log(props)}>
+            //         ✏️
+            //       </span>
+            //       <span className="number" onClick={e => console.log(props)}>
+            //         ❌
+            //       </span>
+            //     </React.Fragment>
+            //   )
+            // }
+          ]}
+        />
         <EmployeeModal
           isOpen={modalIsOpen}
           closeModal={this.closeAddModal}
