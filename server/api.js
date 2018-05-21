@@ -17,7 +17,9 @@ router.get('/employees', async (req, res) => {
 
     res.status(200).json(employees);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({
+      error: err.message
+    });
   }
 });
 
@@ -27,9 +29,14 @@ router.post('/employees', async (req, res) => {
     const db = await low(adapter);
 
     if (!utils.hasAllRequiredFields(req.body)) {
+      console.log(req.body);
       res
         .status(400)
-        .send(`Must include all required fields: ${utils.requiredFields}`);
+        .send(
+          `The following fields are missing: ${utils.getMissingFields(
+            req.body
+          )}`
+        );
       return;
     }
 
@@ -44,7 +51,9 @@ router.post('/employees', async (req, res) => {
 
     res.status(200).json(postResponse);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({
+      error: err.message
+    });
   }
 });
 
@@ -57,7 +66,9 @@ router.patch('/employee/:id', async (req, res) => {
     const employee = await db.get('employees').find({ id }); // chainable lowdb object
 
     if (!employee.value()) {
-      res.status(400).send('Invalid ID');
+      res.status(400).json({
+        error: 'Invalid ID'
+      });
       return;
     }
 
@@ -66,7 +77,9 @@ router.patch('/employee/:id', async (req, res) => {
 
     res.status(200).json(patchResponse);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({
+      error: err.message
+    });
   }
 });
 
@@ -84,7 +97,9 @@ router.delete('/employee/:id', async (req, res) => {
 
     res.status(200).json(deleteResponse);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({
+      error: err.message
+    });
   }
 });
 

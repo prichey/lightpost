@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+
+import EmployeeForm from './EmployeeForm';
 
 // some voodoo to make styled-components work with react-modal
 // via https://github.com/reactjs/react-modal/issues/603#issuecomment-378847885
@@ -34,8 +37,8 @@ const StyledModal = styled(ModalAdapter)`
     top: 4rem;
     left: 4rem;
     right: 4rem;
-    bottom: 4rem;
-    max-width: 100rem;
+    max-width: 50rem;
+    max-height: 100%;
     margin: 0 auto;
     border: 1px solid #ccc;
     background: #fff;
@@ -44,28 +47,45 @@ const StyledModal = styled(ModalAdapter)`
     border-radius: 5px;
     outline: none;
     padding: 2rem;
+
+    ${breakpoint('tablet')`
+      padding: 3rem;
+  `};
   }
 `;
 
-class AddEmployeeModal extends React.Component {
+class EmployeeModal extends React.Component {
   render() {
-    const { isOpen, closeModal } = this.props;
+    const {
+      isOpen,
+      closeModal,
+      actionIsAdd,
+      selectedEmployee,
+      handleAddSuccess
+    } = this.props;
 
     return (
       <StyledModal
         isOpen={isOpen}
         onRequestClose={closeModal}
-        contentLabel="Add Employee"
+        contentLabel={actionIsAdd ? 'Add New Employee' : 'Edit Employee'}
       >
-        <h2>New Employee</h2>
+        <EmployeeForm
+          closeModal={closeModal}
+          actionIsAdd={actionIsAdd}
+          selectedEmployee={selectedEmployee}
+          handleAddSuccess={handleAddSuccess}
+        />
       </StyledModal>
     );
   }
 }
 
-AddEmployeeModal.propTypes = {
+EmployeeModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
+  actionIsAdd: PropTypes.bool.isRequired,
+  handleAddSuccess: PropTypes.func.isRequired
 };
 
-export default AddEmployeeModal;
+export default EmployeeModal;

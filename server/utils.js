@@ -14,6 +14,10 @@ const dbFields = [
   {
     key: 'position',
     required: true
+  },
+  {
+    key: 'location',
+    required: false
   }
 ];
 
@@ -29,6 +33,9 @@ const requiredFields = dbFields
 const hasAllRequiredFields = body =>
   requiredFields.every(field => _presentAndTruthy(field, body));
 
+const getMissingFields = body =>
+  requiredFields.filter(field => !_presentAndTruthy(field, body));
+
 // iterate over valid fields and create new obj with those found in request body
 const getSanitizedBody = body =>
   validFields.reduce(
@@ -40,5 +47,6 @@ const getSanitizedBody = body =>
 module.exports = {
   requiredFields,
   hasAllRequiredFields,
-  getSanitizedBody
+  getSanitizedBody,
+  getMissingFields
 };

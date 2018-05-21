@@ -55,7 +55,7 @@ class Actions extends React.Component {
     const { openAddModal, clearFilters } = this.props;
     return (
       <ActionsWrap>
-        <ActionsText>{'Actions: '}</ActionsText>
+        <ActionsText>Actions:</ActionsText>
         <ButtonList>
           <ButtonWrap>
             <Button onClick={openAddModal} color="green">

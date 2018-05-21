@@ -5,12 +5,14 @@ import { AutoSizer, Column, Table } from 'react-virtualized';
 import { getEmployees } from '../../utils/employeesService';
 
 import Actions from './Actions';
-import AddEmployeeModal from './AddEmployeeModal';
+import EmployeeModal from './EmployeeModal';
 
 class EmployeeTable extends React.Component {
   state = {
     employees: [],
-    addModalIsOpen: false
+    selectedEmployee: null,
+    modalIsOpen: false,
+    actionIsAdd: true // edit if false
   };
 
   componentDidMount() {
@@ -23,13 +25,13 @@ class EmployeeTable extends React.Component {
     console.log('openAddModal');
 
     this.setState({
-      addModalIsOpen: true
+      modalIsOpen: true
     });
   };
 
   closeAddModal = () => {
     this.setState({
-      addModalIsOpen: false
+      modalIsOpen: false
     });
   };
 
@@ -37,10 +39,17 @@ class EmployeeTable extends React.Component {
     console.log('clearFilters');
   };
 
-  render() {
-    const { employees, addModalIsOpen } = this.state;
+  handleAddSuccess = employees => {
+    this.setState({ employees });
+  };
 
-    if (!employees) return null;
+  render() {
+    const {
+      employees,
+      modalIsOpen,
+      actionIsAdd,
+      selectedEmployee
+    } = this.state;
 
     return (
       <React.Fragment>
@@ -64,9 +73,12 @@ class EmployeeTable extends React.Component {
             </Table>
           )}
         </AutoSizer>
-        <AddEmployeeModal
-          isOpen={addModalIsOpen}
+        <EmployeeModal
+          isOpen={modalIsOpen}
           closeModal={this.closeAddModal}
+          actionIsAdd={actionIsAdd}
+          selectedEmployee={selectedEmployee}
+          handleAddSuccess={this.handleAddSuccess}
         />
       </React.Fragment>
     );
