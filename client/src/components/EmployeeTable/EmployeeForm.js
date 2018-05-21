@@ -60,7 +60,14 @@ class EmployeeForm extends React.Component {
     // TODO: client side validation
 
     addEmployee(employee)
-      .then(handleAddSuccess)
+      .then(res => {
+        if (res.errors.length) {
+          console.log(res.errors);
+          return;
+        }
+
+        return handleAddSuccess(res.data);
+      })
       .catch(err => {
         console.log(err);
       })

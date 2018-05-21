@@ -2,15 +2,16 @@
   "employees": [
     {
       "name": "Preston Richey",
+      "id": "SJJZXQJk7",
       "department": "Engineering",
       "position": "Full Stack Developer",
-      "id": "SJJZXQJk7"
+      "title": "Full Stack Developer"
     },
     {
-      "name": "New Employee",
-      "department": "Department",
-      "position": "Position",
-      "id": "SJ2vmuJ1Q"
+      "name": "Another Employee",
+      "department": "UX",
+      "position": "UX Designer",
+      "id": "HkFqNq117"
     }
   ]
 }

@@ -16,8 +16,13 @@ class EmployeeTable extends React.Component {
   };
 
   componentDidMount() {
-    getEmployees().then(employees => {
-      this.setState({ employees });
+    getEmployees().then(res => {
+      if (res.errors.length) {
+        console.log(res.errors);
+        return;
+      }
+
+      this.setState({ employees: res.data });
     });
   }
 

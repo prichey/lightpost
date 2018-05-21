@@ -15,10 +15,13 @@ router.get('/employees', async (req, res) => {
     const db = await low(adapter);
     const employees = db.get('employees').value();
 
-    res.status(200).json(employees);
+    res.status(200).json({
+      errors: [],
+      data: employees
+    });
   } catch (err) {
     res.status(500).json({
-      error: err.message
+      errors: [err]
     });
   }
 });
@@ -29,14 +32,13 @@ router.post('/employees', async (req, res) => {
     const db = await low(adapter);
 
     if (!utils.hasAllRequiredFields(req.body)) {
-      console.log(req.body);
-      res
-        .status(400)
-        .send(
+      res.status(400).json({
+        errors: [
           `The following fields are missing: ${utils.getMissingFields(
             req.body
           )}`
-        );
+        ]
+      });
       return;
     }
 
@@ -49,10 +51,10 @@ router.post('/employees', async (req, res) => {
       .push(newEmployee)
       .write();
 
-    res.status(200).json(postResponse);
+    res.status(200).json({ errors: [], data: postResponse });
   } catch (err) {
     res.status(500).json({
-      error: err.message
+      errors: [err]
     });
   }
 });
@@ -67,7 +69,7 @@ router.patch('/employee/:id', async (req, res) => {
 
     if (!employee.value()) {
       res.status(400).json({
-        error: 'Invalid ID'
+        errors: ['Invalid ID']
       });
       return;
     }
@@ -75,10 +77,10 @@ router.patch('/employee/:id', async (req, res) => {
     const sanitizedBody = utils.getSanitizedBody(req.body);
     const patchResponse = await employee.assign(sanitizedBody).write();
 
-    res.status(200).json(patchResponse);
+    res.status(200).json({ errors: [], data: patchResponse });
   } catch (err) {
     res.status(500).json({
-      error: err.message
+      errors: [err]
     });
   }
 });
@@ -90,15 +92,18 @@ router.delete('/employee/:id', async (req, res) => {
 
     const { id } = req.params;
 
-    const deleteResponse = await db
+    const employees = await db
       .get('employees')
       .remove({ id })
       .write();
 
-    res.status(200).json(deleteResponse);
+    res.status(200).json({
+      errors: [],
+      data: employees
+    });
   } catch (err) {
     res.status(500).json({
-      error: err.message
+      errors: [err]
     });
   }
 });
