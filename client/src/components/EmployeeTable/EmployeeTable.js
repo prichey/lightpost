@@ -66,6 +66,7 @@ class EmployeeTable extends React.Component {
           // showPagination={false}
           showPaginationBottom={true}
           showPageSizeOptions={false}
+          className="-striped"
           defaultPageSize={15}
           data={employees}
           columns={[
@@ -80,21 +81,29 @@ class EmployeeTable extends React.Component {
             {
               Header: 'Position',
               accessor: 'position'
+            },
+            {
+              Header: 'Location',
+              accessor: 'location'
+            },
+            {
+              Header: 'Start Date',
+              accessor: 'startDate'
+            },
+            {
+              Header: 'Actions',
+              // minWidth: 30,
+              Cell: props => (
+                <React.Fragment>
+                  <span className="number" onClick={e => console.log(props)}>
+                    ✏️
+                  </span>
+                  <span className="number" onClick={e => console.log(props)}>
+                    ❌
+                  </span>
+                </React.Fragment>
+              )
             }
-            // {
-            //   Header: 'Actions',
-            //   // minWidth: 30,
-            //   Cell: props => (
-            //     <React.Fragment>
-            //       <span className="number" onClick={e => console.log(props)}>
-            //         ✏️
-            //       </span>
-            //       <span className="number" onClick={e => console.log(props)}>
-            //         ❌
-            //       </span>
-            //     </React.Fragment>
-            //   )
-            // }
           ]}
         />
         <EmployeeModal
