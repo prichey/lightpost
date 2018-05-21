@@ -34,7 +34,7 @@ const StyledModal = styled(ModalAdapter)`
 
   &__content {
     position: absolute;
-    top: 4rem;
+    top: 8rem;
     left: 4rem;
     right: 4rem;
     max-width: 50rem;
