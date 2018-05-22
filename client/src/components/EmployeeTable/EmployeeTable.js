@@ -95,10 +95,20 @@ class EmployeeTable extends React.Component {
               // minWidth: 30,
               Cell: props => (
                 <React.Fragment>
-                  <span className="number" onClick={e => console.log(props)}>
+                  <span
+                    className="number"
+                    onClick={e => console.log(props)}
+                    role="img"
+                    aria-label="Edit Employee"
+                  >
                     ✏️
                   </span>
-                  <span className="number" onClick={e => console.log(props)}>
+                  <span
+                    className="number"
+                    onClick={e => console.log(props)}
+                    role="img"
+                    aria-label="Delete Employee"
+                  >
                     ❌
                   </span>
                 </React.Fragment>
