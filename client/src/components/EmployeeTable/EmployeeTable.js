@@ -1,11 +1,27 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
+import moment from 'moment';
+import styled from 'styled-components';
+
+import 'react-table/react-table.css'; // react-table base styles
 
 import { getEmployees } from '../../utils/employeesService';
+import { getEmployeeLocationString } from '../../utils/helpers';
 
 import Actions from './Actions';
 import EmployeeModal from './EmployeeModal';
+
+const RowActionsWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const RowAction = styled.span`
+  cursor: pointer;
+  margin: 0 0.25em;
+  padding: 0 0.25em;
+`;
 
 class EmployeeTable extends React.Component {
   state = {
@@ -84,34 +100,40 @@ class EmployeeTable extends React.Component {
             },
             {
               Header: 'Location',
-              accessor: 'location'
+              id: 'location',
+              accessor: e => e.location && getEmployeeLocationString(e)
             },
             {
               Header: 'Start Date',
-              accessor: 'startDate'
+              id: 'startDate',
+              accessor: e => e.startDate && moment(e.startDate).format('L'),
+              maxWidth: 110
             },
             {
               Header: 'Actions',
-              // minWidth: 30,
+              sortable: false,
+              maxWidth: 110,
               Cell: props => (
-                <React.Fragment>
-                  <span
+                <RowActionsWrap>
+                  <RowAction
                     className="number"
                     onClick={e => console.log(props)}
                     role="img"
                     aria-label="Edit Employee"
+                    title="Edit Employee"
                   >
                     ✏️
-                  </span>
-                  <span
+                  </RowAction>
+                  <RowAction
                     className="number"
                     onClick={e => console.log(props)}
                     role="img"
                     aria-label="Delete Employee"
+                    title="Delete Employee"
                   >
                     ❌
-                  </span>
-                </React.Fragment>
+                  </RowAction>
+                </RowActionsWrap>
               )
             }
           ]}

@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import '../../styles/datepicker.css'; // overrides
 
 import { addEmployee } from '../../utils/employeesService';
 
@@ -27,21 +32,40 @@ const InputWrap = styled.div`
 const Form = styled.form``;
 const Label = styled.label`
   font-size: 18px;
+  margin-bottom: 0.25em;
+  display: block;
 `;
 const Input = styled.input`
   display: block;
   width: 100%;
   padding: 0.5em;
   font-size: 18px;
+  height: 2.5em;
+  background: #f8f8f8;
+  border: 1px solid #a6a6a6;
+  border-radius: 4px;
+`;
+
+const Select = styled.select`
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  height: 2.5em;
+`;
+
+const Option = styled.option`
+  padding: 0.5em;
 `;
 
 class EmployeeForm extends React.Component {
   state = {
     employee: {
       name: '',
-      startDate: '',
+      startDate: moment(),
       department: '',
-      position: ''
+      position: '',
+      location: '0',
+      remoteLocation: ''
     }
   };
 
@@ -88,9 +112,18 @@ class EmployeeForm extends React.Component {
     this.setState();
   };
 
+  handleDatePickerChange = date => {
+    this.setState({
+      employee: {
+        ...this.state.employee,
+        startDate: date
+      }
+    });
+  };
+
   render() {
     const { actionIsAdd, selectedEmployee, closeModal } = this.props;
-    const employee = this.state;
+    const { employee } = this.state;
 
     if (!actionIsAdd && !selectedEmployee) {
       // todo: remove?
@@ -130,6 +163,40 @@ class EmployeeForm extends React.Component {
               id="position"
               value={employee.position}
               onChange={this.handleFieldChange}
+            />
+          </InputWrap>
+          <InputWrap>
+            <Label htmlFor="location">Location</Label>
+            <Select
+              value={employee.location}
+              onChange={this.handleFieldChange}
+              name="location"
+              id="location"
+            >
+              <Option value="0">New York City</Option>
+              <Option value="1">Beirut</Option>
+              <Option value="2">Remote</Option>
+            </Select>
+          </InputWrap>
+          {employee.location === '2' && (
+            <InputWrap>
+              <Label htmlFor="remoteLocation">Remote Location</Label>
+              <Input
+                type="text"
+                name="remoteLocation"
+                id="remoteLocation"
+                value={employee.remoteLocation}
+                onChange={this.handleFieldChange}
+              />
+            </InputWrap>
+          )}
+          <InputWrap>
+            <Label htmlFor="startDate">Start Date</Label>
+            <DatePicker
+              customInput={<Input />}
+              selected={employee.startDate}
+              popperPlacement="top"
+              onChange={this.handleDatePickerChange}
             />
           </InputWrap>
           <ButtonsWrap>

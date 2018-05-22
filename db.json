@@ -4,14 +4,26 @@
       "name": "Preston Richey",
       "id": "SJJZXQJk7",
       "department": "Engineering",
+      "startDate": "2018-05-22T05:00:37.684Z",
       "position": "Full Stack Developer",
-      "title": "Full Stack Developer"
+      "location": "0"
     },
     {
       "name": "Another Employee",
       "department": "UX",
       "position": "UX Designer",
-      "id": "HkFqNq117"
+      "startDate": "2018-05-22T04:59:18.176Z",
+      "id": "HkFqNq117",
+      "location": "1"
+    },
+    {
+      "name": "Fake Person",
+      "department": "Product",
+      "position": "Product Designer",
+      "startDate": "2018-05-22T04:59:18.176Z",
+      "id": "HkFqNq217",
+      "location": "2",
+      "remoteLocation": "Seattle"
     }
   ]
 }

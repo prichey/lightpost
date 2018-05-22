@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
-import './index.css'; // global styles (mostly reset)
-import 'react-table/react-table.css'; // react-table base styles
+import './styles/global.css'; // global styles (mostly reset)
 
 import App from './components/App';
 

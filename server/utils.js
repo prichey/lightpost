@@ -5,7 +5,7 @@ const dbFields = [
   },
   {
     key: 'startDate',
-    required: false
+    required: true
   },
   {
     key: 'department',
@@ -17,6 +17,10 @@ const dbFields = [
   },
   {
     key: 'location',
+    required: true
+  },
+  {
+    key: 'remoteLocation',
     required: false
   }
 ];
