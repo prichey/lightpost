@@ -25,8 +25,6 @@ const Title = styled.h1`
   margin-bottom: 0.5em;
 `;
 
-const Subtitle = styled.h2``;
-
 const Wrap = styled.div`
   padding: 2.5rem 2rem;
   max-width: 120rem;
@@ -47,7 +45,7 @@ class App extends React.Component {
       <Wrap>
         <Header>
           <Title>Lightpost</Title>
-          <Subtitle>A tiny employee directory for Postlight.</Subtitle>
+          <h2>A tiny employee directory for Postlight.</h2>
         </Header>
         <Main />
         <Footer>

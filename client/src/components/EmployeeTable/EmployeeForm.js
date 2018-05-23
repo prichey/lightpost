@@ -8,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../../styles/datepicker.css'; // overrides
 
 import { addEmployee, updateEmployee } from '../../utils/employeesService';
+import { LOCATIONS } from '../../utils/constants';
 
 import Button from '../common/Button';
 
@@ -162,15 +163,29 @@ class EmployeeForm extends React.Component {
     });
   };
 
+  saveIsEnabled = () => {
+    // this is super ugly
+    // it'd be much better to have individual validators for all of the fields rather than just disabling the save button
+    const { employee } = this.state;
+
+    if (
+      !employee.name ||
+      !employee.department ||
+      !employee.position ||
+      (employee.location === LOCATIONS.REMOTE.value.toString() &&
+        !employee.remoteLocation)
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
   render() {
     const { actionIsAdd, closeModal } = this.props;
     const { employee } = this.state;
 
-    // if (!actionIsAdd && !selectedEmployee) {
-    //   // todo: remove?
-    //   closeModal();
-    //   throw new Error('must pass a selected employee to edit');
-    // }
+    console.log(employee);
 
     return (
       <React.Fragment>
@@ -186,6 +201,7 @@ class EmployeeForm extends React.Component {
               id="name"
               value={employee.name}
               onChange={this.handleFieldChange}
+              placeholder="This field is required"
             />
           </InputWrap>
           <InputWrap>
@@ -196,6 +212,7 @@ class EmployeeForm extends React.Component {
               id="department"
               value={employee.department}
               onChange={this.handleFieldChange}
+              placeholder="This field is required"
             />
           </InputWrap>
           <InputWrap>
@@ -206,6 +223,7 @@ class EmployeeForm extends React.Component {
               id="position"
               value={employee.position}
               onChange={this.handleFieldChange}
+              placeholder="This field is required"
             />
           </InputWrap>
           <InputWrap>
@@ -216,12 +234,14 @@ class EmployeeForm extends React.Component {
               name="location"
               id="location"
             >
-              <Option value="0">New York City</Option>
-              <Option value="1">Beirut</Option>
-              <Option value="2">Remote</Option>
+              {Object.keys(LOCATIONS).map((location, i) => (
+                <Option value={LOCATIONS[location].value} key={i}>
+                  {LOCATIONS[location].label}
+                </Option>
+              ))}
             </Select>
           </InputWrap>
-          {employee.location === '2' && (
+          {employee.location === LOCATIONS.REMOTE.value.toString() && (
             <InputWrap>
               <Label htmlFor="remoteLocation">Remote Location</Label>
               <Input
@@ -230,6 +250,7 @@ class EmployeeForm extends React.Component {
                 id="remoteLocation"
                 value={employee.remoteLocation}
                 onChange={this.handleFieldChange}
+                placeholder="This field is required"
               />
             </InputWrap>
           )}
@@ -243,7 +264,9 @@ class EmployeeForm extends React.Component {
             />
           </InputWrap>
           <ButtonsWrap>
-            <StyledButton color="green">Save</StyledButton>
+            {this.saveIsEnabled() && (
+              <StyledButton color="green">Save</StyledButton>
+            )}
             <StyledButton color="red" onClick={closeModal}>
               Cancel
             </StyledButton>
