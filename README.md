@@ -1,6 +1,8 @@
 ## Lightpost
 
-A tiny employee directory for Postlight, made with love (and several episodes of The Great British Bake Off) by Preston Richey.
+A tiny employee directory for Postlight.
+
+Live version here: [https://lightpost.prichey.net/](https://lightpost.prichey.net/).
 
 ### Features
 
