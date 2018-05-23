@@ -125,11 +125,11 @@ class EmployeeForm extends React.Component {
     const { actionIsAdd, selectedEmployee, closeModal } = this.props;
     const { employee } = this.state;
 
-    if (!actionIsAdd && !selectedEmployee) {
-      // todo: remove?
-      closeModal();
-      throw new Error('must pass a selected employee to edit');
-    }
+    // if (!actionIsAdd && !selectedEmployee) {
+    //   // todo: remove?
+    //   closeModal();
+    //   throw new Error('must pass a selected employee to edit');
+    // }
 
     return (
       <React.Fragment>

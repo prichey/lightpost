@@ -8,9 +8,11 @@ import 'react-table/react-table.css'; // react-table base styles
 
 import { getEmployees } from '../../utils/employeesService';
 import { getEmployeeLocationString } from '../../utils/helpers';
+import { EMPLOYEE_ACTIONS } from '../../utils/constants';
 
 import Actions from './Actions';
 import EmployeeModal from './EmployeeModal';
+import RemoveModal from './RemoveModal';
 
 const RowActionsWrap = styled.div`
   display: flex;
@@ -27,8 +29,7 @@ class EmployeeTable extends React.Component {
   state = {
     employees: [],
     selectedEmployee: null,
-    modalIsOpen: false,
-    actionIsAdd: true // edit if false
+    currentAction: null
   };
 
   componentDidMount() {
@@ -43,16 +44,14 @@ class EmployeeTable extends React.Component {
   }
 
   openAddModal = e => {
-    console.log('openAddModal');
-
     this.setState({
-      modalIsOpen: true
+      currentAction: EMPLOYEE_ACTIONS.ADD
     });
   };
 
   closeAddModal = () => {
     this.setState({
-      modalIsOpen: false
+      currentAction: null
     });
   };
 
@@ -64,13 +63,24 @@ class EmployeeTable extends React.Component {
     this.setState({ employees });
   };
 
+  handleRemoveRequest = employee => {
+    this.setState({
+      selectedEmployee: employee.original,
+      currentAction: EMPLOYEE_ACTIONS.REMOVE
+    });
+  };
+
+  handleRemoveSuccess = removedEmployee => {
+    const { employees } = this.state;
+
+    // filter local employees to exclude removed employee
+    this.setState({
+      employees: employees.filter(e => e.id !== removedEmployee.id)
+    });
+  };
+
   render() {
-    const {
-      employees,
-      modalIsOpen,
-      actionIsAdd,
-      selectedEmployee
-    } = this.state;
+    const { employees, currentAction, selectedEmployee } = this.state;
 
     return (
       <React.Fragment>
@@ -126,10 +136,10 @@ class EmployeeTable extends React.Component {
                   </RowAction>
                   <RowAction
                     className="number"
-                    onClick={e => console.log(props)}
+                    onClick={() => this.handleRemoveRequest(props)}
                     role="img"
-                    aria-label="Delete Employee"
-                    title="Delete Employee"
+                    aria-label="Remove Employee"
+                    title="Remove Employee"
                   >
                     ❌
                   </RowAction>
@@ -139,11 +149,20 @@ class EmployeeTable extends React.Component {
           ]}
         />
         <EmployeeModal
-          isOpen={modalIsOpen}
+          isOpen={
+            currentAction === EMPLOYEE_ACTIONS.ADD ||
+            currentAction === EMPLOYEE_ACTIONS.EDIT
+          }
           closeModal={this.closeAddModal}
-          actionIsAdd={actionIsAdd}
+          actionIsAdd={currentAction === EMPLOYEE_ACTIONS.ADD}
           selectedEmployee={selectedEmployee}
           handleAddSuccess={this.handleAddSuccess}
+        />
+        <RemoveModal
+          isOpen={currentAction === EMPLOYEE_ACTIONS.REMOVE}
+          closeModal={this.closeAddModal}
+          selectedEmployee={selectedEmployee}
+          handleRemoveSuccess={this.handleRemoveSuccess}
         />
       </React.Fragment>
     );

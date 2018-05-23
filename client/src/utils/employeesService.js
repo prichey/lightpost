@@ -20,3 +20,13 @@ export const addEmployee = employee => {
       console.log(err);
     });
 };
+
+export const removeEmployee = id => {
+  return fetch(`/api/employee/${id}`, {
+    method: 'DELETE'
+  })
+    .then(res => res.json())
+    .catch(err => {
+      console.log(err);
+    });
+};
