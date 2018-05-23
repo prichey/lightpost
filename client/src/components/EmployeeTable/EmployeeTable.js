@@ -153,11 +153,11 @@ class EmployeeTable extends React.Component {
                   <RowAction
                     className="number"
                     onClick={() => this.handleUpdateRequest(props)}
-                    role="img"
-                    aria-label="Update Employee"
                     title="Update Employee"
                   >
-                    ✏️
+                    <span role="img" aria-label="Update Employee">
+                      ✏️
+                    </span>
                   </RowAction>
                   <RowAction
                     className="number"
@@ -166,7 +166,9 @@ class EmployeeTable extends React.Component {
                     aria-label="Remove Employee"
                     title="Remove Employee"
                   >
-                    ❌
+                    <span role="img" aria-label="Update Employee">
+                      ❌
+                    </span>
                   </RowAction>
                 </RowActionsWrap>
               )

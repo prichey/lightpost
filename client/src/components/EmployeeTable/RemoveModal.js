@@ -37,7 +37,7 @@ const RemoveContent = ({
       <Button color="green" onClick={handleConfirmClick}>
         Confirm
       </Button>
-      <Button color="red" onClick={removeEmployee}>
+      <Button color="red" onClick={closeModal}>
         Cancel
       </Button>
     </ButtonsWrap>

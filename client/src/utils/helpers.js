@@ -1,23 +1,18 @@
 import { LOCATIONS, EMPLOYEE_ACTIONS } from './constants';
 
 // this is a bit reduxy and probably too obtuse but I like relying on a constants file
-export const mapLocationNumToName = locationNum => {
-  switch (parseInt(locationNum, 10)) {
+export const getEmployeeLocationString = employee => {
+  switch (parseInt(employee.location, 10)) {
     case LOCATIONS.NYC.value:
       return LOCATIONS.NYC.label;
     case LOCATIONS.BEIRUT.value:
       return LOCATIONS.BEIRUT.label;
     case LOCATIONS.REMOTE.value:
-      return LOCATIONS.REMOTE.label;
+      return `${LOCATIONS.REMOTE.label} (${employee.remoteLocation})`;
     default:
       return null;
   }
 };
-
-export const getEmployeeLocationString = employee =>
-  employee.location === LOCATIONS.REMOTE.value
-    ? `Remote (${employee.remoteLocation})`
-    : mapLocationNumToName(employee.location);
 
 export const mapEmployeeActionNameToNum = actionName => {
   switch (actionName.toLowerCase()) {
