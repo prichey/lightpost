@@ -19,6 +19,10 @@ Live version here: [https://lightpost.prichey.net/](https://lightpost.prichey.ne
 * `cd client && npm install` then `npm start` to install and start the React development server with live-reloading.
 * To build, run `npm run build` from the client directory to generate an optimized bundle, which is served by the Express backend.
 
+### Depyloment
+
+* Make sure the client has built (`cd client && npm install && npm run build`) then run `npm start` from the root to start the Express server. By default it will serve on port 5000 unless given an environment variable.
+
 I'm happy to answer any questions about decisions I made here. I tried to be as thoughtful and intentional with my code here I would be with any other project. Thanks for the consideration!
 
 ### Notes
