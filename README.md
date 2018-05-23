@@ -11,6 +11,7 @@ Live version here: [https://lightpost.prichey.net/](https://lightpost.prichey.ne
 * A sortable list of employees, including name, department, position, location, and start date, powered by [react-table](https://github.com/react-tools/react-table) and [react-datepicker](https://github.com/Hacker0x01/react-datepicker).
 * The ability to add, update, and remove employees, using [react-modal](https://github.com/reactjs/react-modal).
 * A simple local JSON database, powered by [lowdb](https://github.com/typicode/lowdb).
+* Deployed to my own DigitalOcean VPS with [dokku](https://github.com/dokku/dokku).
 
 ### Local Development
 
