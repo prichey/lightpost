@@ -162,10 +162,10 @@ class EmployeeForm extends React.Component {
   };
 
   saveIsEnabled = () => {
-    // this is super ugly
-    // it'd be much better to have individual validators for all of the fields rather than just disabling the save button
     const { employee } = this.state;
 
+    // this is super ugly
+    // it'd be much better to have individual validators for all of the fields rather than just disabling the save button
     if (
       !employee.name ||
       !employee.department ||
@@ -182,8 +182,6 @@ class EmployeeForm extends React.Component {
   render() {
     const { actionIsAdd, closeModal } = this.props;
     const { employee } = this.state;
-
-    console.log(employee);
 
     return (
       <React.Fragment>
