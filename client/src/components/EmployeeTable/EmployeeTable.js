@@ -60,7 +60,10 @@ const Table = ({ employees, handleUpdateRequest, handleRemoveRequest }) => (
         Header: 'Start Date',
         id: 'startDate',
         accessor: e => e.startDate && moment(e.startDate).format('L'),
-        maxWidth: 110
+        maxWidth: 110,
+        sortMethod: (a, b) => {
+          return moment(a) - moment(b);
+        }
       },
       {
         Header: 'Actions',
