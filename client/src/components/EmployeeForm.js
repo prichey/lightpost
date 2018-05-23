@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
@@ -23,8 +24,12 @@ const StyledButton = Button.extend`
 `;
 
 const Heading = styled.h2`
-  font-size: 36px;
+  font-size: 28px;
   margin-bottom: 0.5em;
+
+  ${breakpoint('tablet')`
+    font-size: 36px;
+`};
 `;
 
 const InputWrap = styled.div`

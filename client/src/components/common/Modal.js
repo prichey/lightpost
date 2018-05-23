@@ -32,9 +32,9 @@ const StyledModal = styled(ModalAdapter)`
 
   &__content {
     position: absolute;
-    top: 8rem;
-    left: 4rem;
-    right: 4rem;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
     max-width: 50rem;
     max-height: 100%;
     margin: 0 auto;
@@ -44,11 +44,19 @@ const StyledModal = styled(ModalAdapter)`
     -webkit-overflow-scrolling: touch;
     border-radius: 5px;
     outline: none;
-    padding: 2rem;
+    padding: 1em;
 
     ${breakpoint('tablet')`
-      padding: 3rem;
+      padding: 2em;
+      top: 4rem;
+      left: 4rem;
+      right: 4rem;
   `};
+
+    ${breakpoint('desktop')`
+    padding: 2.5em;
+    top: 8rem;
+`};
   }
 `;
 

@@ -26,6 +26,22 @@
       "remoteLocation": "Seattle"
     },
     {
+      "name": "Melvin Edwards",
+      "startDate": "2017-09-12T04:46:28.000Z",
+      "department": "Engineering",
+      "position": "Software Engineer",
+      "location": "1",
+      "id": "ry-DGOzyQ"
+    },
+    {
+      "name": "Anne Powell",
+      "startDate": "2018-05-23T04:47:24.472Z",
+      "department": "Engineering",
+      "position": "Senior Frontend Developer",
+      "location": "0",
+      "id": "r1A_MOM1X"
+    },
+    {
       "name": "Rodney Oliver",
       "id": "HJX4y_fJQ",
       "department": "UX / Design",
@@ -43,28 +59,53 @@
       "remoteLocation": "St. Louis"
     },
     {
-      "name": "Terri Wheeler",
-      "id": "HJjegOM1m",
-      "department": "Product Management",
-      "startDate": "2017-09-25T05:00:37.000Z",
-      "position": "Product Manager",
-      "location": "1"
+      "name": "Shelly Peters",
+      "startDate": "2017-06-15T04:45:50.000Z",
+      "department": "UX / Design",
+      "position": "Director of Design",
+      "location": "2",
+      "remoteLocation": "Juneau",
+      "id": "BJsGMuG1Q"
     },
     {
-      "name": "Allen Castillo",
-      "id": "HkIYgufkQ",
-      "department": "Product Management",
-      "startDate": "2017-05-25T05:00:37.000Z",
-      "position": "Senior Product Manager",
-      "location": "0"
-    },
-    {
-      "name": "Dwayne Stewart",
-      "startDate": "2018-01-11T05:43:29.000Z",
-      "department": "Account Management",
-      "position": "Account Manager",
+      "name": "Jerry Webb",
+      "startDate": "2017-07-11T04:49:59.000Z",
+      "department": "UX / Design",
+      "position": "Junior Designer",
       "location": "1",
-      "id": "r1J5ZOG1m"
+      "id": "BkUfXuzJQ"
+    },
+    {
+      "name": "Scarlett Garcia",
+      "startDate": "2017-11-08T15:04:58.000Z",
+      "department": "Project Management",
+      "position": "Junior Project Manager",
+      "location": "1",
+      "id": "SJ2Qrl7JX"
+    },
+    {
+      "name": "Lloyd Ortiz",
+      "startDate": "2018-01-09T15:05:25.000Z",
+      "department": "Project Management",
+      "position": "Project Manager",
+      "location": "0",
+      "id": "r1mrBgQJ7"
+    },
+    {
+      "name": "Felix Lawrence",
+      "startDate": "2018-01-17T15:06:00.000Z",
+      "department": "Project Management",
+      "position": "Project Manager",
+      "location": "1",
+      "id": "B1_wrlmJX"
+    },
+    {
+      "name": "Aubree Pearson",
+      "startDate": "2017-07-07T04:47:55.000Z",
+      "department": "Product Design",
+      "position": "Product Design Lead",
+      "location": "0",
+      "id": "BkJsG_fym"
     },
     {
       "name": "Franklin Rhodes",
@@ -73,6 +114,14 @@
       "position": "Product Designer",
       "location": "0",
       "id": "HJp2WOf1m"
+    },
+    {
+      "name": "Sylvia Baker",
+      "startDate": "2017-11-23T05:50:25.000Z",
+      "department": "Product Design",
+      "position": "Director of Product Design",
+      "location": "0",
+      "id": "r1qrXOzkQ"
     },
     {
       "name": "Scarlett Hale",
@@ -91,47 +140,6 @@
       "id": "HyLlzdGJ7"
     },
     {
-      "name": "Shelly Peters",
-      "startDate": "2017-06-15T04:45:50.000Z",
-      "department": "UX / Design",
-      "position": "Director of Design",
-      "location": "2",
-      "remoteLocation": "Juneau",
-      "id": "BJsGMuG1Q"
-    },
-    {
-      "name": "Melvin Edwards",
-      "startDate": "2017-09-12T04:46:28.000Z",
-      "department": "Engineering",
-      "position": "Software Engineer",
-      "location": "1",
-      "id": "ry-DGOzyQ"
-    },
-    {
-      "name": "Anne Powell",
-      "startDate": "2018-05-23T04:47:24.472Z",
-      "department": "Engineering",
-      "position": "Senior Frontend Developer",
-      "location": "0",
-      "id": "r1A_MOM1X"
-    },
-    {
-      "name": "Aubree Pearson",
-      "startDate": "2017-07-07T04:47:55.000Z",
-      "department": "Product Design",
-      "position": "Product Design Lead",
-      "location": "0",
-      "id": "BkJsG_fym"
-    },
-    {
-      "name": "Chloe Wallace",
-      "startDate": "2016-11-11T05:48:28.000Z",
-      "department": "Account Management",
-      "position": "Account Executive",
-      "location": "1",
-      "id": "B1_3f_zJm"
-    },
-    {
       "name": "Samantha Dixon",
       "startDate": "2017-09-15T04:49:00.000Z",
       "department": "Leadership",
@@ -140,20 +148,20 @@
       "id": "SJil7uGyX"
     },
     {
-      "name": "Jerry Webb",
-      "startDate": "2017-07-11T04:49:59.000Z",
-      "department": "UX / Design",
-      "position": "Junior Designer",
+      "name": "Dwayne Stewart",
+      "startDate": "2018-01-11T05:43:29.000Z",
+      "department": "Account Management",
+      "position": "Account Manager",
       "location": "1",
-      "id": "BkUfXuzJQ"
+      "id": "r1J5ZOG1m"
     },
     {
-      "name": "Sylvia Baker",
-      "startDate": "2017-11-23T05:50:25.000Z",
-      "department": "Product Design",
-      "position": "Director of Product Design",
-      "location": "0",
-      "id": "r1qrXOzkQ"
+      "name": "Chloe Wallace",
+      "startDate": "2016-11-11T05:48:28.000Z",
+      "department": "Account Management",
+      "position": "Account Executive",
+      "location": "1",
+      "id": "B1_3f_zJm"
     }
   ]
 }
