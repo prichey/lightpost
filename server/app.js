@@ -21,12 +21,10 @@ app.use(express.static(path.resolve('client/build')));
 // normally I wouldn't have all my routes in one file but I figure it's fine for now
 app.use('/api', require('./api'));
 
-// TODO: restore
 // any non-api gets get the react app!
-// app.get('*', (req, res) => {
-//   console.log('non-api request');
-//   res.sendFile(path.join(process.cwd(), 'client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'client/build/index.html'));
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
