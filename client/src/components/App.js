@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import Main from './Main';
+import EmployeeTable from './EmployeeTable';
 
 const Header = styled.header`
   margin-bottom: 2rem;
@@ -47,7 +47,7 @@ class App extends React.Component {
           <Title>Lightpost</Title>
           <h2>A tiny employee directory for Postlight.</h2>
         </Header>
-        <Main />
+        <EmployeeTable />
         <Footer>
           <h3>Made by Preston Richey</h3>
         </Footer>
