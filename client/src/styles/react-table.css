@@ -1,0 +1,4 @@
+.ReactTable .rt-thead .rt-th,
+.ReactTable .rt-thead .rt-td {
+  padding: 10px 5px;
+}

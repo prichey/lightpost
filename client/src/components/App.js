@@ -12,6 +12,15 @@ const Header = styled.header`
   `};
 `;
 
+const Footer = styled.footer`
+  margin-top: 2rem;
+  text-align: right;
+
+  ${breakpoint('tablet')`
+    margin-top: 4rem;
+  `};
+`;
+
 const Title = styled.h1`
   margin-bottom: 0.5em;
 `;
@@ -20,7 +29,7 @@ const Subtitle = styled.h2``;
 
 const Wrap = styled.div`
   padding: 2.5rem 2rem;
-  max-width: 100rem;
+  max-width: 120rem;
   margin: 0 auto;
 
   ${breakpoint('tablet')`
@@ -37,10 +46,13 @@ class App extends React.Component {
     return (
       <Wrap>
         <Header>
-          <Title>Lightpost!</Title>
+          <Title>Lightpost</Title>
           <Subtitle>A tiny employee directory for Postlight.</Subtitle>
         </Header>
         <Main />
+        <Footer>
+          <h3>Made by Preston Richey</h3>
+        </Footer>
       </Wrap>
     );
   }

@@ -8,7 +8,9 @@ export const getEmployeeLocationString = employee => {
     case LOCATIONS.BEIRUT.value:
       return LOCATIONS.BEIRUT.label;
     case LOCATIONS.REMOTE.value:
-      return `${LOCATIONS.REMOTE.label} (${employee.remoteLocation})`;
+      return employee.remoteLocation
+        ? `${LOCATIONS.REMOTE.label} (${employee.remoteLocation})`
+        : LOCATIONS.REMOTE.label;
     default:
       return null;
   }

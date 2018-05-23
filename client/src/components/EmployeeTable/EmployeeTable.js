@@ -5,14 +5,15 @@ import moment from 'moment';
 import styled from 'styled-components';
 
 import 'react-table/react-table.css'; // react-table base styles
+import '../../styles/react-table.css'; // overrides
 
 import { getEmployees } from '../../utils/employeesService';
 import { getEmployeeLocationString } from '../../utils/helpers';
 import { EMPLOYEE_ACTIONS } from '../../utils/constants';
 
-import Actions from './Actions';
 import EmployeeModal from './EmployeeModal';
 import RemoveModal from './RemoveModal';
+import Button from '../common/Button';
 
 const RowActionsWrap = styled.div`
   display: flex;
@@ -24,6 +25,75 @@ const RowAction = styled.span`
   margin: 0 0.25em;
   padding: 0 0.25em;
 `;
+
+const ButtonWrap = styled.div`
+  margin-bottom: 2em;
+`;
+
+const Table = ({ employees, handleUpdateRequest, handleRemoveRequest }) => (
+  <ReactTable
+    // showPagination={false}
+    showPaginationBottom={true}
+    showPageSizeOptions={false}
+    className="-striped"
+    defaultPageSize={15}
+    data={employees}
+    columns={[
+      {
+        Header: 'Name',
+        accessor: 'name'
+      },
+      {
+        Header: 'Department',
+        accessor: 'department'
+      },
+      {
+        Header: 'Position',
+        accessor: 'position'
+      },
+      {
+        Header: 'Location',
+        id: 'location',
+        accessor: e => e.location && getEmployeeLocationString(e)
+      },
+      {
+        Header: 'Start Date',
+        id: 'startDate',
+        accessor: e => e.startDate && moment(e.startDate).format('L'),
+        maxWidth: 110
+      },
+      {
+        Header: 'Actions',
+        sortable: false,
+        maxWidth: 110,
+        Cell: props => (
+          <RowActionsWrap>
+            <RowAction
+              className="number"
+              onClick={() => handleUpdateRequest(props)}
+              title="Update Employee"
+            >
+              <span role="img" aria-label="Update Employee">
+                ✏️
+              </span>
+            </RowAction>
+            <RowAction
+              className="number"
+              onClick={() => handleRemoveRequest(props)}
+              role="img"
+              aria-label="Remove Employee"
+              title="Remove Employee"
+            >
+              <span role="img" aria-label="Update Employee">
+                ❌
+              </span>
+            </RowAction>
+          </RowActionsWrap>
+        )
+      }
+    ]}
+  />
+);
 
 class EmployeeTable extends React.Component {
   state = {
@@ -109,71 +179,19 @@ class EmployeeTable extends React.Component {
 
     return (
       <React.Fragment>
-        <Actions
+        {/* <Actions
           openAddModal={this.openAddModal}
           clearFilters={this.clearFilters}
-        />
-        <ReactTable
-          // showPagination={false}
-          showPaginationBottom={true}
-          showPageSizeOptions={false}
-          className="-striped"
-          defaultPageSize={15}
-          data={employees}
-          columns={[
-            {
-              Header: 'Name',
-              accessor: 'name'
-            },
-            {
-              Header: 'Department',
-              accessor: 'department'
-            },
-            {
-              Header: 'Position',
-              accessor: 'position'
-            },
-            {
-              Header: 'Location',
-              id: 'location',
-              accessor: e => e.location && getEmployeeLocationString(e)
-            },
-            {
-              Header: 'Start Date',
-              id: 'startDate',
-              accessor: e => e.startDate && moment(e.startDate).format('L'),
-              maxWidth: 110
-            },
-            {
-              Header: 'Actions',
-              sortable: false,
-              maxWidth: 110,
-              Cell: props => (
-                <RowActionsWrap>
-                  <RowAction
-                    className="number"
-                    onClick={() => this.handleUpdateRequest(props)}
-                    title="Update Employee"
-                  >
-                    <span role="img" aria-label="Update Employee">
-                      ✏️
-                    </span>
-                  </RowAction>
-                  <RowAction
-                    className="number"
-                    onClick={() => this.handleRemoveRequest(props)}
-                    role="img"
-                    aria-label="Remove Employee"
-                    title="Remove Employee"
-                  >
-                    <span role="img" aria-label="Update Employee">
-                      ❌
-                    </span>
-                  </RowAction>
-                </RowActionsWrap>
-              )
-            }
-          ]}
+        /> */}
+        <ButtonWrap>
+          <Button onClick={this.openAddModal} color="green">
+            Add Employee
+          </Button>
+        </ButtonWrap>
+        <Table
+          employees={employees}
+          handleUpdateRequest={this.handleUpdateRequest}
+          handleRemoveRequest={this.handleRemoveRequest}
         />
         <EmployeeModal
           isOpen={
