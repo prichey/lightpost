@@ -5,12 +5,12 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import '../../styles/datepicker.css'; // overrides
+import '../styles/datepicker.css'; // overrides
 
-import { addEmployee, updateEmployee } from '../../utils/employeesService';
-import { LOCATIONS } from '../../utils/constants';
+import { addEmployee, updateEmployee } from '../utils/employeesService';
+import { LOCATIONS } from '../utils/constants';
 
-import Button from '../common/Button';
+import Button from './common/Button';
 
 const ButtonsWrap = styled.div`
   margin-top: 2rem;

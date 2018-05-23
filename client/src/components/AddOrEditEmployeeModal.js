@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import EmployeeForm from './EmployeeForm';
-import Modal from '../common/Modal';
+import Modal from './common/Modal';
 
-class EmployeeModal extends React.Component {
+class AddOrEditEmployeeModal extends React.Component {
   render() {
     const {
       isOpen,
@@ -34,7 +34,7 @@ class EmployeeModal extends React.Component {
   }
 }
 
-EmployeeModal.propTypes = {
+AddOrEditEmployeeModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   actionIsAdd: PropTypes.bool.isRequired,
@@ -42,4 +42,4 @@ EmployeeModal.propTypes = {
   handleUpdateSuccess: PropTypes.func.isRequired
 };
 
-export default EmployeeModal;
+export default AddOrEditEmployeeModal;

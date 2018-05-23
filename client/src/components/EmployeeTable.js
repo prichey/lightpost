@@ -5,15 +5,15 @@ import moment from 'moment';
 import styled from 'styled-components';
 
 import 'react-table/react-table.css'; // react-table base styles
-import '../../styles/react-table.css'; // overrides
+import '../styles/react-table.css'; // overrides
 
-import { getEmployees } from '../../utils/employeesService';
-import { getEmployeeLocationString } from '../../utils/helpers';
-import { EMPLOYEE_ACTIONS } from '../../utils/constants';
+import { getEmployees } from '../utils/employeesService';
+import { getEmployeeLocationString } from '../utils/helpers';
+import { EMPLOYEE_ACTIONS } from '../utils/constants';
 
-import EmployeeModal from './EmployeeModal';
-import RemoveModal from './RemoveModal';
-import Button from '../common/Button';
+import AddOrEditEmployeeModal from './AddOrEditEmployeeModal';
+import RemoveEmployeeModal from './RemoveEmployeeModal';
+import Button from './common/Button';
 
 const RowActionsWrap = styled.div`
   display: flex;
@@ -196,7 +196,7 @@ class EmployeeTable extends React.Component {
           handleUpdateRequest={this.handleUpdateRequest}
           handleRemoveRequest={this.handleRemoveRequest}
         />
-        <EmployeeModal
+        <AddOrEditEmployeeModal
           isOpen={
             currentAction === EMPLOYEE_ACTIONS.ADD ||
             currentAction === EMPLOYEE_ACTIONS.EDIT
@@ -207,7 +207,7 @@ class EmployeeTable extends React.Component {
           handleAddSuccess={this.handleAddSuccess}
           handleUpdateSuccess={this.handleUpdateSuccess}
         />
-        <RemoveModal
+        <RemoveEmployeeModal
           isOpen={currentAction === EMPLOYEE_ACTIONS.REMOVE}
           closeModal={this.closeAllModals}
           selectedEmployee={selectedEmployee}

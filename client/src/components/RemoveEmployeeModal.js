@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Modal from '../common/Modal';
-import Button from '../common/Button';
+import Modal from './common/Modal';
+import Button from './common/Button';
 
-import { removeEmployee } from '../../utils/employeesService';
+import { removeEmployee } from '../utils/employeesService';
 
 const Heading = styled.h3`
   font-size: 28px;
