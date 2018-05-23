@@ -130,8 +130,6 @@ class EmployeeForm extends React.Component {
 
     e.preventDefault();
 
-    // TODO: client side validation
-
     if (actionIsAdd) {
       this.handleEmployeeAdd();
     } else {
