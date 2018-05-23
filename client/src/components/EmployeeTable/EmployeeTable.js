@@ -45,11 +45,12 @@ class EmployeeTable extends React.Component {
 
   openAddModal = e => {
     this.setState({
+      selectedEmployee: null, // reset to make sure we're not editing a formerly selected employee
       currentAction: EMPLOYEE_ACTIONS.ADD
     });
   };
 
-  closeAddModal = () => {
+  closeAllModals = () => {
     this.setState({
       currentAction: null
     });
@@ -76,6 +77,30 @@ class EmployeeTable extends React.Component {
     // filter local employees to exclude removed employee
     this.setState({
       employees: employees.filter(e => e.id !== removedEmployee.id)
+    });
+  };
+
+  handleUpdateRequest = employee => {
+    this.setState({
+      selectedEmployee: employee.original,
+      currentAction: EMPLOYEE_ACTIONS.EDIT
+    });
+  };
+
+  handleUpdateSuccess = updatedEmployee => {
+    const { employees } = this.state;
+    const updatedEmployeeIndex = employees.findIndex(
+      e => e.id === updatedEmployee.id
+    );
+
+    // update in-state employee
+    // this is a little ugly but seems like a fairly common redux pattern and I think reads intuitively
+    this.setState({
+      employees: [
+        ...employees.slice(0, updatedEmployeeIndex),
+        updatedEmployee,
+        ...employees.slice(updatedEmployeeIndex + 1)
+      ]
     });
   };
 
@@ -127,10 +152,10 @@ class EmployeeTable extends React.Component {
                 <RowActionsWrap>
                   <RowAction
                     className="number"
-                    onClick={e => console.log(props)}
+                    onClick={() => this.handleUpdateRequest(props)}
                     role="img"
-                    aria-label="Edit Employee"
-                    title="Edit Employee"
+                    aria-label="Update Employee"
+                    title="Update Employee"
                   >
                     ✏️
                   </RowAction>
@@ -153,14 +178,15 @@ class EmployeeTable extends React.Component {
             currentAction === EMPLOYEE_ACTIONS.ADD ||
             currentAction === EMPLOYEE_ACTIONS.EDIT
           }
-          closeModal={this.closeAddModal}
+          closeModal={this.closeAllModals}
           actionIsAdd={currentAction === EMPLOYEE_ACTIONS.ADD}
           selectedEmployee={selectedEmployee}
           handleAddSuccess={this.handleAddSuccess}
+          handleUpdateSuccess={this.handleUpdateSuccess}
         />
         <RemoveModal
           isOpen={currentAction === EMPLOYEE_ACTIONS.REMOVE}
-          closeModal={this.closeAddModal}
+          closeModal={this.closeAllModals}
           selectedEmployee={selectedEmployee}
           handleRemoveSuccess={this.handleRemoveSuccess}
         />

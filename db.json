@@ -6,7 +6,17 @@
       "department": "Engineering",
       "startDate": "2018-05-22T05:00:37.684Z",
       "position": "Full Stack Developer",
-      "location": "0"
+      "location": "1",
+      "remoteLocation": "eee"
+    },
+    {
+      "name": "New Name",
+      "startDate": "2018-05-23T02:51:29.998Z",
+      "department": "htnseee",
+      "position": "htns",
+      "location": "2",
+      "id": "Hkp4w8zJm",
+      "remoteLocation": "ueoa"
     }
   ]
 }

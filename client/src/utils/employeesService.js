@@ -21,6 +21,18 @@ export const addEmployee = employee => {
     });
 };
 
+export const updateEmployee = employee => {
+  return fetch(`/api/employee/${employee.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(employee),
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(res => res.json())
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export const removeEmployee = id => {
   return fetch(`/api/employee/${id}`, {
     method: 'DELETE'

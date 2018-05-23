@@ -60,7 +60,8 @@ router.post('/employees', async (req, res) => {
 });
 
 // update employee
-router.patch('/employee/:id', async (req, res) => {
+// I went with put rather than patch because I'm planning on submitting the whole object any time I make an update, rather than just the changeset
+router.put('/employee/:id', async (req, res) => {
   try {
     const db = await low(adapter);
 
@@ -75,9 +76,9 @@ router.patch('/employee/:id', async (req, res) => {
     }
 
     const sanitizedBody = utils.getSanitizedBody(req.body);
-    const patchResponse = await employee.assign(sanitizedBody).write();
+    const putResponse = await employee.assign(sanitizedBody).write();
 
-    res.status(200).json({ errors: [], data: patchResponse });
+    res.status(200).json({ errors: [], data: putResponse });
   } catch (err) {
     res.status(500).json({
       errors: [err]

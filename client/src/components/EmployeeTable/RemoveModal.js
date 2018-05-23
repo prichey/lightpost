@@ -65,13 +65,7 @@ class RemoveModal extends React.Component {
   };
 
   render() {
-    const {
-      isOpen,
-      closeModal,
-      actionIsAdd,
-      selectedEmployee,
-      handleRemoveSuccess
-    } = this.props;
+    const { isOpen, closeModal, selectedEmployee } = this.props;
 
     if (!selectedEmployee) return null;
 

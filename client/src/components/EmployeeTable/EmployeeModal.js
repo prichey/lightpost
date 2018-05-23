@@ -11,7 +11,8 @@ class EmployeeModal extends React.Component {
       closeModal,
       actionIsAdd,
       selectedEmployee,
-      handleAddSuccess
+      handleAddSuccess,
+      handleUpdateSuccess
     } = this.props;
 
     return (
@@ -25,6 +26,7 @@ class EmployeeModal extends React.Component {
             actionIsAdd={actionIsAdd}
             selectedEmployee={selectedEmployee}
             handleAddSuccess={handleAddSuccess}
+            handleUpdateSuccess={handleUpdateSuccess}
           />
         }
       />
@@ -36,7 +38,8 @@ EmployeeModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   actionIsAdd: PropTypes.bool.isRequired,
-  handleAddSuccess: PropTypes.func.isRequired
+  handleAddSuccess: PropTypes.func.isRequired,
+  handleUpdateSuccess: PropTypes.func.isRequired
 };
 
 export default EmployeeModal;

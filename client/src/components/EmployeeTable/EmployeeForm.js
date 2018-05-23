@@ -7,7 +7,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../styles/datepicker.css'; // overrides
 
-import { addEmployee } from '../../utils/employeesService';
+import { addEmployee, updateEmployee } from '../../utils/employeesService';
 
 import Button from '../common/Button';
 
@@ -71,20 +71,29 @@ class EmployeeForm extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // set state to employee if passed in
-    return null;
+    const { selectedEmployee } = nextProps;
+
+    if (!selectedEmployee) return null; // we're adding, so state can stay blank
+
+    // we're editing, so set state from props
+    return {
+      employee: {
+        ...selectedEmployee,
+        // this is a silly thing where the date picker expects the state to be a moment object rather than a string
+        // since it gets stringified whenever we save it to the db, we have to re-objectify here
+        // object spread ftw, btw
+        startDate: moment(selectedEmployee.startDate)
+      }
+    };
   }
 
-  handleFormSubmit = e => {
-    const { employee } = this.state;
+  handleEmployeeAdd = () => {
     const { handleAddSuccess, closeModal } = this.props;
 
-    e.preventDefault();
-
-    // TODO: client side validation
-
-    addEmployee(employee)
+    addEmployee(this.state.employee)
       .then(res => {
         if (res.errors.length) {
+          // ideally, handle errors on the client
           console.log(res.errors);
           return;
         }
@@ -95,6 +104,38 @@ class EmployeeForm extends React.Component {
         console.log(err);
       })
       .finally(closeModal);
+  };
+
+  handleEmployeeUpdate = () => {
+    const { handleUpdateSuccess, closeModal } = this.props;
+
+    updateEmployee(this.state.employee)
+      .then(res => {
+        if (res.errors.length) {
+          console.log(res.errors);
+          return;
+        }
+
+        return handleUpdateSuccess(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(closeModal);
+  };
+
+  handleFormSubmit = e => {
+    const { actionIsAdd } = this.props;
+
+    e.preventDefault();
+
+    // TODO: client side validation
+
+    if (actionIsAdd) {
+      this.handleEmployeeAdd();
+    } else {
+      this.handleEmployeeUpdate();
+    }
   };
 
   handleFieldChange = (e, v) => {
@@ -122,7 +163,7 @@ class EmployeeForm extends React.Component {
   };
 
   render() {
-    const { actionIsAdd, selectedEmployee, closeModal } = this.props;
+    const { actionIsAdd, closeModal } = this.props;
     const { employee } = this.state;
 
     // if (!actionIsAdd && !selectedEmployee) {
@@ -133,7 +174,9 @@ class EmployeeForm extends React.Component {
 
     return (
       <React.Fragment>
-        <Heading>{actionIsAdd ? 'Add New Employee' : 'Edit Employee'}</Heading>
+        <Heading>
+          {actionIsAdd ? 'Add New Employee' : 'Update Employee'}
+        </Heading>
         <Form onSubmit={this.handleFormSubmit}>
           <InputWrap>
             <Label htmlFor="name">Name</Label>
@@ -215,7 +258,8 @@ EmployeeForm.propTypes = {
   closeModal: PropTypes.func.isRequired,
   actionIsAdd: PropTypes.bool.isRequired,
   selectedEmployee: PropTypes.object,
-  handleAddSuccess: PropTypes.func.isRequired
+  handleAddSuccess: PropTypes.func.isRequired,
+  handleUpdateSuccess: PropTypes.func.isRequired
 };
 
 export default EmployeeForm;
